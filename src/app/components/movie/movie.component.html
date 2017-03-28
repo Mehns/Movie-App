@@ -1,0 +1,64 @@
+<div *ngIf="movie">
+  <div class="container">
+
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-xs-12">
+        <div class="img-container">
+          <img *ngIf="movie.Poster != 'N/A'"
+               src="{{movie.Poster}}" class="img-big center-block">
+          <img *ngIf="movie.Poster === 'N/A'"
+               src="./assets/placeholder.gif" class="img-big center-block">
+          <div class="overlay">
+              <div class="btn-favorite" [ngClass]="{'btn-favorite': favorite, 'btn-not-favorite': !favorite}" (click)="toggleFavorite()">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+              </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="col-lg-8 col-md-6 col-xs-12">
+
+        <h1>{{movie.Title}}</h1>
+        <h4 *ngIf="movie.Genre" class="title-genre">{{movie.Genre}}</h4>
+
+
+
+        <p>
+          <i class="fa fa-calendar-o icon-label" aria-hidden="true"></i> {{movie.Year}}   <i class="fa fa-clock-o icon-label" aria-hidden="true"></i> {{movie.Runtime}}
+        </p>
+
+        <div class="rating">
+          <span *ngIf="movie.imdbRating != 'N/A'" class="rating-big">{{movie.imdbRating}}</span><span class="rating-small">/10</span>
+        </div>
+
+
+
+        <div class="div-story" *ngIf="movie.Plot != 'N/A'">
+          <h4 class="title-details">STORYLINE</h4>
+          <p  class="text-story">{{movie.Plot}}</p>
+        </div>
+
+
+        <div class="div-details">
+          <h4 class="title-details">PRODUCTION</h4>
+          <p *ngIf="movie.Country != 'N/A'"><span class="label-details">Country: </span>{{movie.Country}}</p>
+          <p *ngIf="movie.Released != 'N/A'"><span class="label-details">Released: </span>{{movie.Released}}</p>
+          <p *ngIf="movie.Director != 'N/A'"><span class="label-details">Director: </span>{{movie.Director}}</p>
+          <p *ngIf="movie.Writer != 'N/A'"><span class="label-details">Writers: </span>{{movie.Writer}}</p>
+          <p *ngIf="movie.Actors != 'N/A'"><span class="label-details">Stars: </span>{{movie.Actors}}</p>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
+

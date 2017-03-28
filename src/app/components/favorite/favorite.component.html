@@ -1,0 +1,45 @@
+<button class="btn-clear" (click)="clearFavorites()" *ngIf="favorites.length > 0">
+  <i class="fa fa-trash" aria-hidden="true"></i> Clear Favorites</button>
+<header>
+  <h2>Your favorite Movies</h2>
+</header>
+
+
+
+
+<div *ngIf="favorites.length === 0">
+  <p>You haven't set any movie as your favorite yet. Search for a movie and set it as favorite in the details preview.</p>
+</div>
+
+
+
+<div *ngIf="favorites.length !== 0">
+
+
+
+  <div class="row _row">
+
+    <div *ngFor="let item of favorites" class="item">
+      <!--<button type="button" class="btn-close" (click)="deleteFavorite(item.imdbID)" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+      <button class="close-icon" (click)="deleteFavorite(item.imdbID)"></button>
+      <div class="thumbnail" (click)="selectMovie(item.imdbID)">
+        <img *ngIf="item.Poster != 'N/A'"
+             src="{{item.Poster}}" class="img-preview">
+        <img *ngIf="item.Poster === 'N/A'"
+             src="./assets/placeholder.gif" class="img-preview">
+
+        <div class="caption">
+          <h3 [ngClass]="{'text-small': item.Title.length > 20}">
+            {{item.Title}}
+          </h3>
+          <p>{{item.Year}}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+

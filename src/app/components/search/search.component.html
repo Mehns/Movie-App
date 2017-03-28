@@ -1,0 +1,45 @@
+<div class="container">
+<header>
+  <h1>
+    {{title}}
+  </h1>
+</header>
+
+
+
+
+<div class="input-group" id="search-group">
+  <input type="text" id="search-field" [(ngModel)]="searchStr" (keyup.enter)="searchMovie()" class="form-control" placeholder="Search Movie..." aria-describedby="basic-addon2" autofocus>
+  <span class="input-group-addon" id="search-btn" (click)="searchMovie()">Search</span>
+</div>
+
+
+<div *ngIf="searchResult">
+
+
+  <div class="row _row">
+
+    <div *ngFor="let item of searchResult.Search" class="item">
+
+      <div class="thumbnail" (click)="selectMovie(item.imdbID)">
+        <img *ngIf="item.Poster != 'N/A'"
+             src="{{item.Poster}}" class="img-preview">
+        <img *ngIf="item.Poster === 'N/A'"
+             src="./assets/placeholder.gif" class="img-preview">
+        <div class="caption">
+          <h3 [ngClass]="{'text-small': item.Title.length > 20}">
+            {{item.Title}}
+          </h3>
+          <p>{{item.Year}}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+</div>
